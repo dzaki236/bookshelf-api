@@ -1,0 +1,25 @@
+{
+  "name": "bookself_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-prod": "node ./index.js",
+    "start-dev": "nodemon ./index.js",
+    "lint": "eslint ./",
+    "fix": "eslint ./ --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-standard": "^15.0.0",
+    "eslint-plugin-import": "^2.27.4",
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "nanoid": "^3.3.4"
+  }
+}
