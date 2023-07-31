@@ -120,7 +120,7 @@ class Bookcontroller {
 
   async getBook (request, h) {
     const { id } = request.params
-    const bookLists = Books.filter((n) => n.id === id)[0]
+    const bookLists = Books.filter((book) => book.id === id)[0]
     if (typeof bookLists !== 'undefined') {
       responses = h.response({
         status: 'success',
@@ -132,7 +132,7 @@ class Bookcontroller {
     } else {
       responses = h.response({
         status: 'fail',
-        message: 'Buku tidak ditemukan'
+        message: 'Buku tidak ditemukan!'
       })
       statusCode = 404
     }
@@ -153,7 +153,7 @@ class Bookcontroller {
     if (typeof name === 'undefined') {
       responses = h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. Mohon isi nama buku'
+        message: 'Gagal memperbarui buku. Nama buku tidak boleh kosong!'
       })
 
       statusCode = 400
@@ -164,7 +164,7 @@ class Bookcontroller {
     if (readPage > pageCount) {
       responses = h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
+        message: 'Gagal memperbarui buku. readPage pada buku tidak boleh lebih besar dari pageCount!'
       })
 
       statusCode = 400
@@ -188,7 +188,7 @@ class Bookcontroller {
 
       responses = h.response({
         status: 'success',
-        message: 'Buku berhasil diperbarui'
+        message: 'Buku berhasil diperbarui!'
       })
 
       statusCode = 200
@@ -198,12 +198,37 @@ class Bookcontroller {
 
     responses = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui buku. Id tidak ditemukan'
+      message: 'Gagal memperbarui buku. Buku tidak ditemukan!'
     })
 
     statusCode = 404
     responses.code(statusCode)
     return responses
+  }
+
+  async deleteBooks (request, h) {
+    const { id } = request.params;
+
+    const index = Books.findIndex((book) => book.id === id);
+  
+    if (index !== -1) {
+      Books.splice(index, 1);
+      responses = h.response({
+        status: 'success',
+        message: 'Buku berhasil dihapus!',
+      });
+      statusCode = 200
+      responses.code(statusCode);
+      return response;
+    }
+  
+    responses = h.response({
+      status: 'fail',
+      message: 'Buku gagal dihapus. Buku tidak ditemukan!',
+    });
+    statusCode = 404
+    response.code(statusCode);
+    return response;
   }
 }
 
