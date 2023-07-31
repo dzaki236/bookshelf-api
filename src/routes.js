@@ -25,7 +25,7 @@ const routes = [
     method: 'PUT',
     path: '/books/{id}',
     handler: Bookcontroller.updateBooks
-  }
+  },
   {
     method: 'DELETE',
     path: '/books/{id}',

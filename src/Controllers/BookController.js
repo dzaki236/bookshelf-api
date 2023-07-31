@@ -207,28 +207,28 @@ class Bookcontroller {
   }
 
   async deleteBooks (request, h) {
-    const { id } = request.params;
+    const { id } = request.params
 
-    const index = Books.findIndex((book) => book.id === id);
-  
+    const index = Books.findIndex((book) => book.id === id)
+
     if (index !== -1) {
-      Books.splice(index, 1);
+      Books.splice(index, 1)
       responses = h.response({
         status: 'success',
-        message: 'Buku berhasil dihapus!',
-      });
+        message: 'Buku berhasil dihapus!'
+      })
       statusCode = 200
-      responses.code(statusCode);
-      return response;
+      responses.code(statusCode)
+      return responses
     }
-  
+
     responses = h.response({
       status: 'fail',
-      message: 'Buku gagal dihapus. Buku tidak ditemukan!',
-    });
+      message: 'Buku gagal dihapus. Buku tidak ditemukan!'
+    })
     statusCode = 404
-    response.code(statusCode);
-    return response;
+    responses.code(statusCode)
+    return responses
   }
 }
 

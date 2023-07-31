@@ -1,4 +1,4 @@
-const Books = [{
+let Books = [{
   id: '1',
   name: 'buku-a',
   year: 2010,
@@ -38,5 +38,6 @@ const Books = [{
   insertedAt: '2023-07-31T13:06:24.255Z',
   updateAt: '2023-07-31T13:06:24.255Z'
 }]
-// const Books = []
+// un-comment this.. \/
+// Books = []
 module.exports = Books
