@@ -14,6 +14,6 @@ const init = async () => {
   server.route(routes)
   await server.start()
   const updatedAt = new Date().toISOString()
-  console.log('Starting server at '+ updatedAt)
+  console.log('Starting server at ' + updatedAt)
 }
 module.exports = init

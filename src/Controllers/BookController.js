@@ -141,37 +141,37 @@ class Bookcontroller {
     return responses
   }
 
-  async updateBooks(request, h){
-    const { id } = request.params;
+  async updateBooks (request, h) {
+    const { id } = request.params
 
     const {
-      name, year, author, summary, publisher, pageCount, readPage, reading,
-    } = request.payload;
-    const updatedAt = new Date().toISOString();
-    const index = Books.findIndex((book) => book.id === id);
-  
+      name, year, author, summary, publisher, pageCount, readPage, reading
+    } = request.payload
+    const updatedAt = new Date().toISOString()
+    const index = Books.findIndex((book) => book.id === id)
+
     if (typeof name === 'undefined') {
       responses = h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. Mohon isi nama buku',
-      });
-  
+        message: 'Gagal memperbarui buku. Mohon isi nama buku'
+      })
+
       statusCode = 400
       responses.code(statusCode)
       return responses
     }
-  
+
     if (readPage > pageCount) {
       responses = h.response({
         status: 'fail',
-        message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
-      });
-  
+        message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
+      })
+
       statusCode = 400
       responses.code(statusCode)
       return responses
     }
-  
+
     if (index !== -1) {
       Books[index] = {
         ...Books[index],
@@ -183,24 +183,24 @@ class Bookcontroller {
         pageCount,
         readPage,
         reading,
-        updatedAt,
-      };
-  
+        updatedAt
+      }
+
       responses = h.response({
         status: 'success',
-        message: 'Buku berhasil diperbarui',
-      });
-  
+        message: 'Buku berhasil diperbarui'
+      })
+
       statusCode = 200
       responses.code(statusCode)
       return responses
     }
-  
+
     responses = h.response({
       status: 'fail',
-      message: 'Gagal memperbarui buku. Id tidak ditemukan',
-    });
-  
+      message: 'Gagal memperbarui buku. Id tidak ditemukan'
+    })
+
     statusCode = 404
     responses.code(statusCode)
     return responses
